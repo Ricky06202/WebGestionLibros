@@ -4,6 +4,9 @@
 
 ```bash
 npm i
+```
+
+```bash
 npm run dev
 ```
 
@@ -19,15 +22,21 @@ npm run dev
 
 ##### Astro
 
-`<Icon name="solar:home-bold" />`
+```html
+<Icon name="solar:home-bold" />
+```
 
 ##### React
 
-`<Icon icon="solar:home-bold" />`
+```html
+<Icon icon="solar:home-bold" />
+```
 
 ##### Svelte
 
-`<Icon icon="solar:home-bold" />`
+```html
+<Icon icon="solar:home-bold" />
+```
 
 ### Instalar conjunto de iconos
 
@@ -35,8 +44,12 @@ npm run dev
 
 ##### npm
 
-`npm install @iconify-json/solar`
+```bash
+npm install @iconify-json/solar
+```
 
 ##### yarn
 
-`yarn add @iconify-json/solar`
+```bash
+yarn add @iconify-json/solar
+```
