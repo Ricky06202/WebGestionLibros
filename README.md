@@ -1,47 +1,47 @@
-# Astro Starter Kit: Minimal
+# Gestor de Libros
 
-```sh
-npm create astro@latest -- --template minimal
-```
+<!--toc:start-->
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+- [Gestor de Libros](#gestor-de-libros)
+  - [Iniciar el Proyecto](#iniciar-el-proyecto)
+  - [Iconos](#iconos) - [Pagina de Iconos](#pagina-de-iconos) - [Componente de Iconos](#componente-de-iconos) - [Ejemplo de Uso](#ejemplo-de-uso) - [Astro](#astro) - [React](#react) - [Svelte](#svelte) - [Instalar conjunto de iconos](#instalar-conjunto-de-iconos) - [npm](#npm) - [yarn](#yarn)
+  <!--toc:end-->
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Iniciar el Proyecto
 
-## 🚀 Project Structure
+- npm i
+- npm run dev
 
-Inside of your Astro project, you'll see the following folders and files:
+## Iconos
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### Pagina de Iconos
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+[Iconify](https://icon-sets.iconify.design)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Componente de Iconos
 
-Any static assets, like images, can be placed in the `public/` directory.
+#### Ejemplo de Uso
 
-## 🧞 Commands
+##### Astro
 
-All commands are run from the root of the project, from a terminal:
+<Icon name="solar:home-bold" />
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+##### React
 
-## 👀 Want to learn more?
+<Icon icon="solar:home-bold" />
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+##### Svelte
+
+<Icon icon="solar:home-bold" />
+
+#### Instalar conjunto de iconos
+
+@iconify-json/\*
+
+##### npm
+
+npm install @iconify-json/solar
+
+##### yarn
+
+yarn add @iconify-json/solar
