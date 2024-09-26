@@ -1,0 +1,2 @@
+En esta carpeta solo se deben colocar imagenes, iconos, sonidos, tipografias
+que esten relacionadas especificamente con este modulo

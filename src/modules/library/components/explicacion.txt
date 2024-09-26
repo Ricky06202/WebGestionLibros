@@ -1,0 +1,4 @@
+En esta carpeta deben ir los componentes que manejen la logica de la 
+libreria, como lo que es mostrar los libros, lo de los filtros etc
+ten en cuenta que los componentes de react te facilitan la elaboracion de
+esta programacion
