@@ -1,7 +1,28 @@
 ---
+import ListaLibros from "@library/components/ListaLibros.svelte";
+import type { libro } from "@library/constants/ApiLibrosTypes";
+import { librosMock } from "@library/constants/librosMock";
 import LibraryLayout from "@library/layout/LibraryLayout.astro";
+
+let libros: libro[] = librosMock.map((libro) => ({
+  id: libro.id,
+  titulo: libro.titulo,
+  subtitulo: libro.subtitulo,
+  descripcion: libro.descripcion,
+  portada: libro.link_portada,
+  añoPublicacion: libro.año_publicacion,
+  editorial: libro.editorial,
+  paginas: libro.paginas,
+  disponibilidad: libro.esta_disponible,
+  precio: parseFloat(libro.precio),
+  linkReferencia: libro.link_referencia,
+  rating: parseFloat(libro.rating),
+  autor: libro.autor,
+  temas: libro.nombreTema,
+}));
 ---
 
 <LibraryLayout title="Library">
   Pagina Principal de los libros!!!
+  <ListaLibros libros={libros} client:load />
 </LibraryLayout>
