@@ -1,4 +1,4 @@
-interface libro {
+export interface libro {
   id: number;
   titulo: string;
   subtitulo: string;
@@ -10,17 +10,17 @@ interface libro {
   disponibilidad: boolean;
   precio: number;
   linkReferencia: string;
-  rating: string;
+  rating: number;
   autor: number[];
   temas: number[];
 }
 
-interface autor {
+export interface autor {
   id: number;
   nombre: string;
 }
 
-interface tema {
+export interface tema {
   id: number;
   nombre: string;
 }
