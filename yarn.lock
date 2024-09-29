@@ -395,6 +395,13 @@
   resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.21.5.tgz"
   integrity sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw==
 
+"@iconify-json/healthicons@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@iconify-json/healthicons/-/healthicons-1.2.0.tgz#13490cd0ba9366022ddf90a4557c169b424bfd87"
+  integrity sha512-CrNMxFlCJm7d28FNUCE4nlqf5FL1KD5aqO8yokh1LB+x78IXeZBggRTH7W1+QLoJiBmFsVtrAsRH+R4obs33BQ==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify/react@^5.0.2":
   version "5.0.2"
   resolved "https://registry.npmjs.org/@iconify/react/-/react-5.0.2.tgz"
@@ -426,7 +433,7 @@
     svgo "^3.3.2"
     tar "^6.2.1"
 
-"@iconify/types@^2.0.0":
+"@iconify/types@*", "@iconify/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@iconify/types/-/types-2.0.0.tgz"
   integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
