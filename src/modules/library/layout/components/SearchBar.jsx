@@ -5,7 +5,7 @@ function ListaLibros() {
   const [libros, setLibros] = useState([]);
   const [buscarLibros, setbuscarLibros] = useState("");
 
-  const URL = "http://127.0.0.1:8000/Libros";
+  const URL = "http://127.0.0.1:8000/Libros/";
   // const URL = "https://jsonplaceholder.typicode.com/users";
 
   useEffect(() => {
@@ -17,6 +17,7 @@ function ListaLibros() {
           console(response);
         })
         .catch((error) => {
+          console.log("error");
           console.log(error);
         });
     };
@@ -41,20 +42,20 @@ function ListaLibros() {
           </tr>
         </thead>
         <tbody>
-          <th>
+          {libros.map((libro) => (
+            <tr key={libro.id}>
+              <td>{libro.titulo}</td>
+              <td>{libro.subtitulo}</td>
+              <td>{libro.rating}</td>
+            </tr>
+          ))}
+          {/* <tr>
             {libros.map((libro) => (
-              <li key={libro.id}>
-                {libro.titulo}, {libro.subtitulo}, {libro.rating}
-              </li>
-            ))}
-          </th>
-          {/* <th>
-            {libros.map((libro) => (
-              <li key={libro.id}>
+              <td key={libro.id}>
                 {libro.name}, {libro.username}, {libro.email}
-              </li>
+              </td>
             ))}
-          </th> */}
+          </tr> */}
           {libros.length === 0 && (
             <tr>
               <td colSpan="3">Cargando...</td>
