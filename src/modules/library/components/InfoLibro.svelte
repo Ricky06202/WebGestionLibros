@@ -105,11 +105,9 @@
       </ul>
       <p>
         Temas:
-        {#each libro.temas as tema}
-          <a class="text-blue-700 underline" href="#">
-            {temas.filter((t) => t.id == tema)[0].tema}
-          </a>{", "}
-        {/each}
+        {temas
+          .filter((tema) => libro.temas.includes(tema.id))
+          .map((tema) => " " + tema.tema)}
       </p>
     </main>
   </div>
