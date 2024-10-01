@@ -34,13 +34,32 @@
 </script>
 
 {#if libro === undefined}
-  loading...
+  <span class="text-3xl font-bold h-screen text-center"> Loading... </span>
 {:else}
   <div class="grid h-screen grid-cols-[1fr_3fr] p-6 gap-6">
-    <aside class="bg-lime-100">
-      <img src={libro.portada} alt={"Portada del libro " + libro.titulo} />
+    <aside class="flex flex-col">
+      <div class="border border-gray-400 rounded-lg flex flex-col p-4 gap-4">
+        <img
+          class="rounded-md"
+          src={libro.portada}
+          alt={"Portada del libro " + libro.titulo}
+        />
+        {#if libro.disponibilidad}
+          <a
+            href={libro.linkReferencia}
+            class="bg-emerald-600 px-4 py-2 rounded text-center text-xl font-bold border-2 border-emerald-500 text-white hover:bg-emerald-500 hover:border-emerald-400"
+            >Comprar</a
+          >
+        {:else}
+          <a
+            href="#"
+            class="bg-red-600 px-4 py-2 rounded text-center text-xl font-bold border-2 border-red-500 text-white hover:bg-red-500 hover:border-red-400"
+            >Agotado</a
+          >
+        {/if}
+      </div>
     </aside>
-    <main class="bg-red-100">
+    <main class="flex flex-col">
       <h2 class="text-3xl font-bold">{libro.titulo}</h2>
       <h3 class="text-xl italic text-gray-700">{libro.subtitulo}</h3>
       <span class="mb-4 block">
