@@ -1,5 +1,5 @@
-interface bookState {
-  lista: any[];
-  setLista: any;
-}
-const useBookStore = create<bookState>((set) => ({}));
+import type { libro } from "@library/constants/ApiLibrosTypes";
+import { atom } from "nanostores";
+
+export const bookListSize = atom(1);
+export const bookList = atom<libro[]>([]);
