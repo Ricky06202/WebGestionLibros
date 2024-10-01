@@ -1,0 +1,10 @@
+---
+import LibraryLayout from "@library/layout/LibraryLayout.astro";
+import InfoLibro from "@library/components/InfoLibro.svelte";
+
+const { id } = Astro.params;
+---
+
+<LibraryLayout title="Libros">
+  <InfoLibro id={id} client:load />
+</LibraryLayout>
