@@ -12,7 +12,6 @@ function ListaLibros() {
   const libros = bookList;
   const [buscarLibros, setbuscarLibros] = useState("");
   const tamano = bookListSize;
-  const $listaLibrosFiltrados = useStore(bookListFiltered);
   const listaLibrosFiltrados = bookListFiltered;
 
   const URL = "http://127.0.0.1:8000/Libros/";

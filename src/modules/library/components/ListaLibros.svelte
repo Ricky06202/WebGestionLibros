@@ -37,7 +37,6 @@
       .get(`http://localhost:8000/Temas/`)
       .then((res) => res.data)
       .then((data) => {
-        console.log(data);
         temas = data.map((tema: any) => ({
           id: tema.id,
           tema: tema.nombre_tema,
