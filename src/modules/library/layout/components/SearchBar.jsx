@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-
-import LibrosComponente from "../../components/ListaLibros.svelte";
+import { useStore } from "@nanostores/react";
+import { bookList, bookListSize } from "@library/store/bookStore";
 
 function ListaLibros() {
-  const [libros, setLibros] = useState([]);
+  const $libros = useStore(bookList);
+  const libros = bookList;
   const [buscarLibros, setbuscarLibros] = useState("");
-  const [tamano, setTamano] = useState(1);
+  const $tamano = useStore(bookListSize);
+  const tamano = bookListSize;
 
   const URL = "http://127.0.0.1:8000/Libros/";
 
@@ -15,7 +17,7 @@ function ListaLibros() {
       await axios
         .get(URL)
         .then((response) => {
-          setLibros(
+          libros.set(
             response.data.map((data) => ({
               id: data.id,
               titulo: data.titulo,
@@ -43,14 +45,14 @@ function ListaLibros() {
     fetchLibros();
   }, []);
 
-  const librosFiltrados = libros.filter(
+  const librosFiltrados = $libros.filter(
     (libro) =>
       libro.titulo.toLowerCase().includes(buscarLibros.toLowerCase()) ||
       libro.subtitulo.toLowerCase().includes(buscarLibros.toLowerCase()),
   );
 
   const cambiarTamano = (event) => {
-    setTamano(event.target.value);
+    tamano.set(event.target.value);
   };
 
   return (
@@ -69,34 +71,11 @@ function ListaLibros() {
           className="md:w-1/2 justify-self-center"
           onChange={cambiarTamano}
         >
-          <option value="1">Grande</option>
-          <option value="2">Mediano</option>
-          <option value="3">Pequeño</option>
+          <option value={1}>Grande</option>
+          <option value={2}>Mediano</option>
+          <option value={3}>Pequeño</option>
         </select>
       </div>
-      <table className="table table-striped table-hover mt-5 shadow-lg">
-        <thead>
-          <tr className="bg-blue-700 text-white">
-            <th>Titulo</th>
-            <th>Subtitulo</th>
-            <th>Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          {librosFiltrados.map((libro) => (
-            <tr key={libro.id}>
-              <td>{libro.titulo}</td>
-              <td>{libro.subtitulo}</td>
-              <td>{libro.rating}</td>
-            </tr>
-          ))}
-          {libros.length === 0 && (
-            <tr>
-              <td colSpan="3">Cargando...</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
     </div>
   );
 }

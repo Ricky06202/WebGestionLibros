@@ -1,9 +1,10 @@
 ---
 import ListaLibros from "@library/components/ListaLibros.svelte";
+import SearchBar from "@library/layout/components/SearchBar";
 import LibraryLayout from "@library/layout/LibraryLayout.astro";
 ---
 
 <LibraryLayout title="Library">
-  Pagina Principal de los libros!!!
+  <SearchBar client:load />
   <ListaLibros client:load />
 </LibraryLayout>
