@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { libro, tema } from "@library/constants/ApiLibrosTypes";
-  import { map } from "astro:schema";
   import axios from "axios";
   import { onMount } from "svelte";
 
