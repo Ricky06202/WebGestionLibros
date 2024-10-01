@@ -3,6 +3,7 @@
   import Icon from "@iconify/svelte";
 
   export let libro: libro;
+  export let autor: string;
 </script>
 
 <a
@@ -14,7 +15,7 @@
   </div>
   <div class="px-4">
     <h3 class="text-lg text-center group-hover:underline">{libro.titulo}</h3>
-    <span class="text-center block font-light">by {libro.autor}</span>
+    <span class="text-center block font-light">by {autor}</span>
   </div>
   <div class="flex justify-between px-4">
     <div class="flex flex-col items-center">

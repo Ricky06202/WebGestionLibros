@@ -22,5 +22,5 @@ export interface autor {
 
 export interface tema {
   id: number;
-  nombre: string;
+  tema: string;
 }

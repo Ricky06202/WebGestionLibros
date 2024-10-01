@@ -1,11 +1,13 @@
 <script lang="ts">
-  import type { libro } from "@library/constants/ApiLibrosTypes";
+  import type { libro, tema } from "@library/constants/ApiLibrosTypes";
+  import { map } from "astro:schema";
   import axios from "axios";
   import { onMount } from "svelte";
 
   export let id;
-
   let libro: libro;
+  let autor: string;
+  let temas: tema[];
 
   onMount(() => {
     axios
@@ -30,10 +32,27 @@
         };
       })
       .catch((error) => console.error(error));
+
+    axios
+      .get(`http://localhost:8000/Autores/${id}/`)
+      .then((res) => res.data)
+      .then((data) => {
+        autor = data.nombre_autor;
+      });
+
+    axios
+      .get(`http://localhost:8000/Temas/`)
+      .then((res) => res.data)
+      .then((data) => {
+        temas = data.map((d: any) => ({
+          id: d.id,
+          tema: d.nombre_tema,
+        }));
+      });
   });
 </script>
 
-{#if libro === undefined}
+{#if libro === undefined || autor === undefined || temas === undefined}
   <span class="text-3xl font-bold h-screen text-center"> Loading... </span>
 {:else}
   <div class="grid h-screen grid-cols-[1fr_3fr] p-6 gap-6">
@@ -63,7 +82,7 @@
       <h2 class="text-3xl font-bold">{libro.titulo}</h2>
       <h3 class="text-xl italic text-gray-700">{libro.subtitulo}</h3>
       <span class="mb-4 block">
-        by <a class="text-blue-700 underline" href="#">{libro.autor}</a>
+        by <a class="text-blue-700 underline" href="#">{autor}</a>
       </span>
       <p class="mb-8">{libro.descripcion}</p>
       <ul class="grid grid-cols-3 gap-2 px-4 mb-4">
@@ -88,7 +107,9 @@
       <p>
         Temas:
         {#each libro.temas as tema}
-          <a class="text-blue-700 underline" href="#">{tema}</a>{", "}
+          <a class="text-blue-700 underline" href="#">
+            {temas.filter((t) => t.id == tema)[0].tema}
+          </a>{", "}
         {/each}
       </p>
     </main>

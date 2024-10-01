@@ -1,8 +1,10 @@
 <script lang="ts">
-  import type { libro } from "@library/constants/ApiLibrosTypes";
+  import type { libro, tema } from "@library/constants/ApiLibrosTypes";
   import Icon from "@iconify/svelte";
 
   export let libro: libro;
+  export let autor: string;
+  export let temas: tema[];
 </script>
 
 <a
@@ -17,7 +19,7 @@
       <h3 class="text-lg group-hover:underline">{libro.titulo}</h3>
       <span class="block font-light">
         <strong class="font-bold">Autor: </strong>
-        {libro.autor}
+        {autor}
       </span>
       <span class="block font-light">
         <strong class="font-bold">Publicado: </strong>
@@ -25,7 +27,9 @@
       </span>
       <span class="block font-light">
         <strong class="font-bold">Temas: </strong>
-        {libro.temas}
+        {temas
+          .filter((tema) => libro.temas.includes(tema.id))
+          .map((tema) => " " + tema.tema)}
       </span>
     </div>
     <div class="flex gap-2">
@@ -39,9 +43,10 @@
       </div>
       <div class="flex items-center gap-2">
         <Icon class="text-3xl" icon="healthicons:star-medium" />
-        <span
-          ><strong class="font-bold">Valoracion: </strong>{libro.rating}</span
-        >
+        <span>
+          <strong class="font-bold">Valoracion: </strong>
+          {libro.rating}
+        </span>
       </div>
     </div>
   </div>
