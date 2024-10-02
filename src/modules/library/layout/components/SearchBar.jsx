@@ -4,6 +4,11 @@ import { useStore } from "@nanostores/react";
 import { bookList, bookListSize } from "@library/store/bookStore";
 
 function ListaLibros() {
+  const handleClick = () => {
+    window.location.href = "/gestorLibros";
+    console.log("Click");
+  };
+
   const $libros = useStore(bookList);
   const libros = bookList;
   const [buscarLibros, setbuscarLibros] = useState("");
@@ -68,13 +73,20 @@ function ListaLibros() {
         <select
           name="tamaño"
           id="id_tamaño"
-          className="md:w-1/2 justify-self-center"
+          className="md:w-1/2 justify-self-center ml-10"
           onChange={cambiarTamano}
         >
           <option value={1}>Grande</option>
           <option value={2}>Mediano</option>
           <option value={3}>Pequeño</option>
         </select>
+        <button
+          type="button"
+          onClick={handleClick}
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm justify-self-end mr-20 md:w-1/2 w-36 ml-10"
+        >
+          Añadir Libro
+        </button>
       </div>
     </div>
   );
