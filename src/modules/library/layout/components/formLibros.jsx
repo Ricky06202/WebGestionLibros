@@ -101,7 +101,6 @@ function Formulario({ texto }) {
             id="autor"
             defaultValue="defaultAutor"
             class="block w-full p-2 text-gray-900 border border-sky-300 rounded-lg text-xs focus:ring-blue-500 focus:border-blue-500"
-            multiple
           >
             <option value="defaultAutor" disabled selected hidden>
               autores
