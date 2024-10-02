@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { libro, tema } from "@library/constants/ApiLibrosTypes";
-  import axios from "axios";
+  import type { autor, libro, tema } from "@library/constants/ApiLibrosTypes";
+  import { getAuthor, getBook, getTopics } from "@library/services/apiLibros";
   import { onMount } from "svelte";
 
   export let id;
@@ -9,45 +9,15 @@
   let temas: tema[];
 
   onMount(() => {
-    axios
-      .get(`http://localhost:8000/Libros/${id}/`)
-      .then((res) => res.data)
-      .then((data) => {
-        libro = {
-          id: data.id,
-          titulo: data.titulo,
-          subtitulo: data.subtitulo,
-          descripcion: data.descripcion,
-          portada: data.link_portada,
-          añoPublicacion: data.año_publicacion,
-          editorial: data.editorial,
-          paginas: data.paginas,
-          disponibilidad: data.esta_disponible,
-          precio: parseFloat(data.precio),
-          linkReferencia: data.link_referencia,
-          rating: parseFloat(data.rating),
-          autor: data.autor,
-          temas: data.nombreTema,
-        };
-      })
-      .catch((error) => console.error(error));
-
-    axios
-      .get(`http://localhost:8000/Autores/${id}/`)
-      .then((res) => res.data)
-      .then((data) => {
-        autor = data.nombre_autor;
-      });
-
-    axios
-      .get(`http://localhost:8000/Temas/`)
-      .then((res) => res.data)
-      .then((data) => {
-        temas = data.map((d: any) => ({
-          id: d.id,
-          tema: d.nombre_tema,
-        }));
-      });
+    getBook(id).then((libroAPI: libro) => {
+      libro = libroAPI;
+    });
+    getAuthor(id).then((autorAPI: autor) => {
+      autor = autorAPI.nombre;
+    });
+    getTopics().then((temasAPI: tema[]) => {
+      temas = temasAPI;
+    });
   });
 </script>
 

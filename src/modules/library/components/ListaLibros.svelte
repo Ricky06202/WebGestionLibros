@@ -1,5 +1,4 @@
 <script lang="ts">
-  import axios from "axios";
   import LibroGrande from "./LibroGrande.svelte";
   import LibroMediano from "./LibroMediano.svelte";
   import LibroPequeo from "./LibroPequeño.svelte";
@@ -10,6 +9,7 @@
   } from "@library/store/bookStore";
   import { onMount } from "svelte";
   import type { autor, tema } from "@library/constants/ApiLibrosTypes";
+  import { getAuthors, getTopics } from "@library/services/apiLibros.ts";
 
   let libros = bookList;
   let librosFiltrados = bookListFiltered;
@@ -24,24 +24,12 @@
   });
 
   onMount(() => {
-    axios
-      .get(`http://localhost:8000/Autores/`)
-      .then((res) => res.data)
-      .then((data) => {
-        autores = data.map((autor: any) => ({
-          id: autor.id,
-          nombre: autor.nombre_autor,
-        }));
-      });
-    axios
-      .get(`http://localhost:8000/Temas/`)
-      .then((res) => res.data)
-      .then((data) => {
-        temas = data.map((tema: any) => ({
-          id: tema.id,
-          tema: tema.nombre_tema,
-        }));
-      });
+    getAuthors().then((autoresAPI: autor[]) => {
+      autores = autoresAPI;
+    });
+    getTopics().then((temasAPI: tema[]) => {
+      temas = temasAPI;
+    });
   });
 </script>
 

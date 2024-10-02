@@ -6,6 +6,7 @@ import {
   bookListSize,
   bookListFiltered,
 } from "@library/store/bookStore";
+import { getBooks } from "@library/services/apiLibros";
 
 function ListaLibros() {
   const handleClick = () => {
@@ -19,34 +20,10 @@ function ListaLibros() {
   const tamano = bookListSize;
   const listaLibrosFiltrados = bookListFiltered;
 
-  const URL = "http://127.0.0.1:8000/Libros/";
-
   useEffect(() => {
-    axios
-      .get(URL)
-      .then((response) => {
-        libros.set(
-          response.data.map((data) => ({
-            id: data.id,
-            titulo: data.titulo,
-            subtitulo: data.subtitulo,
-            descripcion: data.descripcion,
-            portada: data.link_portada,
-            añoPublicacion: data.año_publicacion,
-            editorial: data.editorial,
-            paginas: data.paginas,
-            disponibilidad: data.esta_disponible,
-            precio: data.precio,
-            linkReferencia: data.link_referencia,
-            rating: data.rating,
-            autor: data.autor,
-            temas: data.nombreTema,
-          })),
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getBooks().then((booksApi) => {
+      libros.set(booksApi);
+    });
   }, []);
 
   useEffect(() => {
@@ -87,7 +64,7 @@ function ListaLibros() {
         <button
           type="button"
           onClick={handleClick}
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm justify-self-end mr-20 md:w-1/2 w-36 ml-10"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm justify-self-end mr-20 md:w-1/2 w-36 ml-10"
         >
           Añadir Libro
         </button>

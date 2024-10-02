@@ -1,41 +1,14 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { getBooks } from "@library/services/apiLibros";
 function Formulario({ texto }) {
   const [libros, setLibros] = useState([]);
 
   const URL = "http://127.0.0.1:8000/Libros/";
 
   useEffect(() => {
-    const fetchLibros = async () => {
-      await axios
-        .get(URL)
-        .then((response) => {
-          setLibros(
-            response.data.map((data) => ({
-              id: data.id,
-              titulo: data.titulo,
-              subtitulo: data.subtitulo,
-              descripcion: data.descripcion,
-              portada: data.link_portada,
-              añoPublicacion: data.año_publicacion,
-              editorial: data.editorial,
-              paginas: data.paginas,
-              disponibilidad: data.esta_disponible,
-              precio: data.precio,
-              linkReferencia: data.link_referencia,
-              rating: data.rating,
-              autor: data.autor,
-              temas: data.nombreTema,
-            })),
-          );
-        })
-        .catch((error) => {
-          console.log("error");
-          console.log(error);
-        });
-    };
-
-    fetchLibros();
+    getBooks().then((librosApi) => {
+      setLibros(librosApi);
+    });
   }, []);
 
   return (
