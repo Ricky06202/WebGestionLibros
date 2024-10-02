@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useStore } from "@nanostores/react";
 import {
   bookList,
