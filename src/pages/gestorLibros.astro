@@ -1,16 +1,13 @@
 ---
+
 import Footer from "@library/layout/components/Footer.astro";
 import Header from "@library/layout/components/Header.astro";
-import SearchBar from "../modules/library/layout/components/SearchBar";
 import Logo from "/public/favicon.svg";
 
+import Form from "@library/layout/components/formLibros";
 
+const texto = "Añadir";
 
-
-interface Props {
-  title: string;
-}
-const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,11 +17,12 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={Logo.src} />
     <meta name="generator" content={Astro.generator} />
-    <title>Lista de Libros</title>
+    <title>Gestor de Libros</title>
   </head>
   <body>
     <Header />
-    <SearchBar client:load />
+    <!-- <Formulario /> -->
+    <Form {texto} client:load/>
     <Footer />
   </body>
 </html>

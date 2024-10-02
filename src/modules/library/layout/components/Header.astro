@@ -1,20 +1,15 @@
 ---
 import Logo from "/public/favicon.svg";
 
-
-
-const { href, title } = Astro.props
+const { href, title } = Astro.props;
 ---
 
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
   <div
-    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 navbar"
   >
     <!-- Logo principal -->
-    <a
-      href="/"
-      class="flex items-center space-x-3 rtl:space-x-reverse"
-    >
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src={Logo.src} class="h-12" />
       <span
         class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
@@ -24,15 +19,15 @@ const { href, title } = Astro.props
     <!-- Logo principal -->
     <!-- Input de busqueda -->
     <div
-      class="max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto p-4"
+      class="max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto p-4 "
     >
       <input
         type="text"
         id="search-navbar"
-        class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
         placeholder="Buscar libro..."
       />
-      <div class="top-4 right-4 bg-white rounded-full text-blue-500 p-2">
+      <div class="top-4 right-5 bg-white rounded-full text-blue-500 p-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"
@@ -53,7 +48,7 @@ const { href, title } = Astro.props
     </div>
     <!-- Input de busqueda -->
     <!-- Elementos para direccionar a las paginas -->
-    <div class="hidden w-full md:block md:w-auto mr-10" id="navbar">
+    <div class="w-full md:block md:w-auto mr-10" id="navbar">
       <ul
         class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white"
       >
@@ -180,47 +175,32 @@ const { href, title } = Astro.props
     </div>
     <!-- Elementos para direccionar a las paginas -->
     <!-- Menu desplegable (dropdown) -->
-    <button
-      data-collapse-toggle="navbar-hamburger"
-      type="button"
-      class="inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-      aria-controls="navbar-hamburger"
-      aria-expanded="false"
-    >
-      <span class="sr-only">Open main menu</span>
-      <svg
-        class="w-5 h-5"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 17 14"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 1h15M1 7h15M1 13h15"></path>
-      </svg>
-    </button>
+
     <!-- Menu desplegable (dropdown) -->
   </div>
-
 </nav>
 
 <script>
-	const buton_colaborar = document.getElementById('id_boton_colaborar') as Element
-	const buton_explorar = document.getElementById('id_boton_explorar') as Element
-	const menu_abierto_colaborar = document.getElementById('id_menu_colaborar') as Element
-	const menu_abierto_explorar = document.getElementById('id_menu_explorar') as Element
+  const buton_colaborar = document.getElementById(
+    "id_boton_colaborar"
+  ) as Element;
+  const buton_explorar = document.getElementById(
+    "id_boton_explorar"
+  ) as Element;
+  const menu_abierto_colaborar = document.getElementById(
+    "id_menu_colaborar"
+  ) as Element;
+  const menu_abierto_explorar = document.getElementById(
+    "id_menu_explorar"
+  ) as Element;
 
-	buton_colaborar.addEventListener('click', () => {
-		menu_abierto_colaborar.classList.toggle('hidden')
-		menu_abierto_explorar.classList.add('hidden')
-	})
+  buton_colaborar.addEventListener("click", () => {
+    menu_abierto_colaborar.classList.toggle("hidden");
+    menu_abierto_explorar.classList.add("hidden");
+  });
 
-	buton_explorar.addEventListener('click', () => {
-		menu_abierto_explorar.classList.toggle('hidden')
-		menu_abierto_colaborar.classList.add('hidden')
-	})
+  buton_explorar.addEventListener("click", () => {
+    menu_abierto_explorar.classList.toggle("hidden");
+    menu_abierto_colaborar.classList.add("hidden");
+  });
 </script>
