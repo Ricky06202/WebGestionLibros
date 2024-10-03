@@ -5,13 +5,16 @@ import {
   getTopics,
   postBook,
   updateBook,
-  getBook,
 } from "@library/services/apiLibros";
-import { getElementsPositionInDocument } from "astro/runtime/client/dev-toolbar/apps/utils/highlight.js";
+import { authorList, bookList, topicList } from "@library/store/bookStore";
+import { useStore } from "@nanostores/react";
 function Formulario({ accion, titulo, id = "" }) {
-  const [libros, setLibros] = useState([]);
-  const [autores, setAutores] = useState([]);
-  const [temas, setTemas] = useState([]);
+  const libros = bookList;
+  const $libros = useStore(bookList);
+  const autores = authorList;
+  const $autores = useStore(authorList);
+  const temas = topicList;
+  const $temas = useStore(topicList);
 
   const [idTitulo, setTitulo] = useState("");
   const [subtitulo, setSubtitulo] = useState("");
@@ -27,21 +30,24 @@ function Formulario({ accion, titulo, id = "" }) {
   const [autor, setAutor] = useState("");
 
   useEffect(() => {
-    getBooks().then((librosApi) => {
-      setLibros(librosApi);
-    });
-    getAuthors().then((autoresApi) => {
-      setAutores(autoresApi);
-    });
-    getTopics().then((temasApi) => {
-      setTemas(temasApi);
-    });
+    if ($libros.length === 0)
+      getBooks().then((librosApi) => {
+        libros.set(librosApi);
+      });
+    if ($autores.length === 0)
+      getAuthors().then((autoresApi) => {
+        autores.set(autoresApi);
+      });
+    if ($temas.length === 0)
+      getTopics().then((temasApi) => {
+        temas.set(temasApi);
+      });
   }, []);
 
   useEffect(() => {
     if (accion !== "Editar") return;
-    if (libros.length === 0 || libros === undefined) return;
-    const libro = libros.filter((libro) => libro.id == id)[0];
+    if ($libros.length === 0) return;
+    const libro = $libros.filter((libro) => libro.id == id)[0];
     setTitulo(libro.titulo);
     setSubtitulo(libro.subtitulo);
     setDescripcion(libro.descripcion);
@@ -54,7 +60,7 @@ function Formulario({ accion, titulo, id = "" }) {
     setLinkReferencia(libro.linkReferencia);
     setRating(libro.rating);
     setAutor(libro.autor === undefined ? 1 : libro.autor[0]);
-  }, [libros]);
+  }, [$libros]);
 
   const handleButtonClick = () => {
     let datos = {
@@ -176,7 +182,7 @@ function Formulario({ accion, titulo, id = "" }) {
             onChange={(e) => setLinkReferencia(e.target.value)}
             className="block w-full p-2 text-gray-900 border border-sky-300 rounded-lg text-xs focus:ring-blue-500 focus:border-blue-500"
           />
-          {libros.length === 0 ? (
+          {$autores.length === 0 ? (
             "Cargando..."
           ) : (
             <span className="grid grid-col1">
@@ -192,7 +198,7 @@ function Formulario({ accion, titulo, id = "" }) {
                 <option value="defaultAutor" disabled hidden>
                   autores
                 </option>
-                {autores.map((autor) => (
+                {$autores.map((autor) => (
                   <option key={autor.id} value={autor.id}>
                     {autor.nombre}
                   </option>
@@ -211,7 +217,7 @@ function Formulario({ accion, titulo, id = "" }) {
             onChange={(e) => setRating(e.target.value)}
             className="block w-full p-2 text-gray-900 border border-sky-300 rounded-lg text-xs focus:ring-blue-500 focus:border-blue-500"
           />
-          {temas.length === 0 ? (
+          {$temas.length === 0 ? (
             "Cargando ..."
           ) : (
             <span className="grid grid-col1">
@@ -235,7 +241,7 @@ function Formulario({ accion, titulo, id = "" }) {
                   value={temas}
                   onChange={(e) => setIdTemas(e.target.value)}
                 >
-                  {temas.map((tema) => (
+                  {$temas.map((tema) => (
                     <li key={tema.id}>
                       <div className="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                         <input
