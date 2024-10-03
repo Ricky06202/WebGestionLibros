@@ -137,7 +137,7 @@ function Formulario({ accion, titulo, id = "" }) {
               type="checkbox"
               placeholder="Disponbilidad"
               id="disponibilidad"
-              value={disponibilidad}
+              checked={disponibilidad}
               onChange={(e) => setDisponibilidad(e.target.value)}
             />
             <label htmlFor="disponibilidad">Disponibilidad</label>
