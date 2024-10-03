@@ -69,11 +69,8 @@ function Formulario({ accion, titulo }) {
       precio: "0",
       linkReferencia: "https://www.blackbox.ai",
       rating: "1",
-      autor: [{ id: 1, nombre_autor: "Eric Robertson" }],
-      temas: [
-        { id: 1, nombre_tema: "Self-help" },
-        { id: 2, nombre_tema: "personal development" },
-      ],
+      autor: [],
+      temas: [],
     };
     postBook(datos);
   };
