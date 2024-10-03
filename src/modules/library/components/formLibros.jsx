@@ -53,7 +53,7 @@ function Formulario({ accion, titulo, id = "" }) {
     setPrecio(libro.precio);
     setLinkReferencia(libro.linkReferencia);
     setRating(libro.rating);
-    setAutor(libro.autor);
+    setAutor(libro.autor === undefined ? 1 : libro.autor[0]);
   }, [libros]);
 
   const handleButtonClick = () => {
