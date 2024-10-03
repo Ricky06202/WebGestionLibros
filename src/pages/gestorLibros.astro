@@ -4,7 +4,8 @@ import Header from "@library/layout/components/Header.astro";
 import Logo from "/public/favicon.svg";
 import Formulario from "@library/components/formLibros";
 
-const texto = "Añadir";
+const accion = "Añadir";
+const titulo = "Libro";
 ---
 
 <!doctype html>
@@ -19,7 +20,7 @@ const texto = "Añadir";
   <body>
     <Header />
     <!-- <Formulario /> -->
-    <Formulario {texto} client:load />
+    <Formulario {accion} {titulo} client:load />
     <Footer />
   </body>
 </html>
