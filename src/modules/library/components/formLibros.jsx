@@ -58,6 +58,7 @@ function Formulario({ accion, titulo }) {
       temas: [1, 2, 3],
     };
     postBook(datos);
+    window.location.href = "/";
   };
 
   return (

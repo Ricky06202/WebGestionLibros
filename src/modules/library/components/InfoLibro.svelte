@@ -3,9 +3,9 @@
   import Icon from "@iconify/svelte";
   import { bookList, authorList, topicList } from "@library/store/bookStore";
   import { onMount } from "svelte";
-  import { getAuthors, getBooks, getTopics } from "@library/services/apiLibros";
+  import { deleteBook, getAuthors, getBooks, getTopics } from "@library/services/apiLibros";
 
-  export let id;
+  export let id: number;
   let libro: libro;
   let autor: autor;
   let temas: tema[];
@@ -24,6 +24,17 @@
   topicList.subscribe((value) => {
     temas = [...$topicList];
   });
+
+  function handleEditar() {
+    window.location.href = "/editarLibro";
+  }
+
+  function handleEliminar() {
+    deleteBook(id);
+    window.location.href = "/";
+
+  }
+
   onMount(() => {
     if (
       $bookList.length === 0 ||
@@ -50,7 +61,7 @@
   <span class="text-3xl font-bold h-screen text-center"> Loading... </span>
 {:else}
   <div class="grid h-screen grid-cols-[1fr_3fr] p-6 gap-6">
-    <aside class="flex flex-col">
+    <aside class="flex flex-col gap-4">
       <div class="border border-gray-400 rounded-lg flex flex-col p-4 gap-4">
         <img
           class="rounded-md"
@@ -76,6 +87,22 @@
             >Agotado</a
           >
         {/if}
+      </div>
+      <div class="border border-gray-400 rounded-lg flex flex-col p-4 gap-4">
+        <button
+          type="button"
+          on:click={handleEditar}
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg  py-2"
+        >
+          Editar
+        </button>
+        <button
+          type="button"
+          on:click={handleEliminar}
+          class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg  py-2 "
+        >
+          Eliminar
+        </button>
       </div>
     </aside>
     <main class="flex flex-col">

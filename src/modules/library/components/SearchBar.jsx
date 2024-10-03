@@ -28,7 +28,7 @@ function ListaLibros() {
   useEffect(() => {
     if (buscarLibros.trim() === "") listaLibrosFiltrados.set([]);
     listaLibrosFiltrados.set(librosFiltrados);
-  }, [buscarLibros]);
+  }, [buscarLibros, $libros]);
 
   const librosFiltrados = $libros.filter(
     (libro) =>

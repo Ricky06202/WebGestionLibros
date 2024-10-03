@@ -133,3 +133,9 @@ export async function postBook(librosData: any): Promise<any> {
       }
     });
 }
+
+export async function deleteBook(id: number) {
+  axios.delete(`http://127.0.0.1:8000/Libros/${id}/`).catch((error) => {
+    console.log(error);
+  });
+}
