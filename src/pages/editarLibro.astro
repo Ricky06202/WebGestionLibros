@@ -1,0 +1,15 @@
+---
+import Formulario from '@library/components/formLibros'
+import LibraryLayout from '@library/layout/LibraryLayout.astro'
+
+const accion = 'Editar'
+const titulo = 'Libro'
+---
+
+<LibraryLayout title='Gestor de Libros'>
+	<Formulario
+		accion={accion}
+		titulo={titulo}
+		client:load
+	/>
+</LibraryLayout>

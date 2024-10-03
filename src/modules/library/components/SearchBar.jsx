@@ -9,7 +9,7 @@ import { getBooks } from "@library/services/apiLibros";
 
 function ListaLibros() {
   const handleClick = () => {
-    window.location.href = "/gestorLibros";
+    window.location.href = "/crearLibro";
     console.log("Click");
   };
 
