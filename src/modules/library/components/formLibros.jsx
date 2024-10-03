@@ -20,7 +20,7 @@ function Formulario({ accion, titulo }) {
   const [añoPublicacion, setAñoPublicacion] = useState("");
   const [editorial, setEditorial] = useState("");
   const [paginas, setPaginas] = useState("");
-  const [disponibilidad, setDisponibilidad] = useState("");
+  const [disponibilidad, setDisponibilidad] = useState(false);
   const [precio, setPrecio] = useState("");
   const [linkReferencia, setLinkReferencia] = useState("");
   const [rating, setRating] = useState("");
@@ -54,23 +54,8 @@ function Formulario({ accion, titulo }) {
       precio,
       linkReferencia,
       rating,
-      autor,
-      temas: idTemas,
-    };
-    datos = {
-      titulo: "a",
-      subtitulo: "a",
-      descripcion: "a",
-      portada: "https://www.blackbox.ai",
-      añoPublicacion: 0,
-      editorial: "a",
-      paginas: 0,
-      disponibilidad: true,
-      precio: "0",
-      linkReferencia: "https://www.blackbox.ai",
-      rating: "1",
-      autor: [],
-      temas: [],
+      autor: [1],
+      temas: [1],
     };
     postBook(datos);
   };
@@ -90,7 +75,7 @@ function Formulario({ accion, titulo }) {
             type="text"
             placeholder="Título"
             id="titulo"
-            value={titulo}
+            value={idTitulo}
             onChange={(e) => setTitulo(e.target.value)}
             className="block w-full p-2 text-gray-900 border border-sky-300 rounded-lg text-xs focus:ring-blue-500 focus:border-blue-500"
           />
