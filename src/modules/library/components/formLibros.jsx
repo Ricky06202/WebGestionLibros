@@ -22,7 +22,7 @@ function Formulario({ accion, titulo }) {
   const [paginas, setPaginas] = useState("");
   const [disponibilidad, setDisponibilidad] = useState("");
   const [precio, setPrecio] = useState("");
-  const [amazon, setAmazon] = useState("");
+  const [linkReferencia, setLinkReferencia] = useState("");
   const [rating, setRating] = useState("");
   const [autor, setAutor] = useState("");
   const [idTemas, setIdTemas] = useState("");
@@ -42,8 +42,8 @@ function Formulario({ accion, titulo }) {
   }, []);
 
   const handleButtonClick = () => {
-    const datos = {
-      idTitulo,
+    let datos = {
+      titulo: idTitulo,
       subtitulo,
       descripcion,
       portada,
@@ -52,14 +52,30 @@ function Formulario({ accion, titulo }) {
       paginas,
       disponibilidad,
       precio,
-      amazon,
+      linkReferencia,
       rating,
       autor,
-      idTemas,
+      temas: idTemas,
     };
-    const librosData = JSON.stringify(datos);
-    console.log(librosData);
-    postBook(librosData);
+    datos = {
+      titulo: "a",
+      subtitulo: "a",
+      descripcion: "a",
+      portada: "https://www.blackbox.ai",
+      añoPublicacion: 0,
+      editorial: "a",
+      paginas: 0,
+      disponibilidad: true,
+      precio: "0",
+      linkReferencia: "https://www.blackbox.ai",
+      rating: "1",
+      autor: [{ id: 1, nombre_autor: "Eric Robertson" }],
+      temas: [
+        { id: 1, nombre_tema: "Self-help" },
+        { id: 2, nombre_tema: "personal development" },
+      ],
+    };
+    postBook(datos);
   };
 
   return (
@@ -77,7 +93,7 @@ function Formulario({ accion, titulo }) {
             type="text"
             placeholder="Título"
             id="titulo"
-            value={idTitulo}
+            value={titulo}
             onChange={(e) => setTitulo(e.target.value)}
             className="block w-full p-2 text-gray-900 border border-sky-300 rounded-lg text-xs focus:ring-blue-500 focus:border-blue-500"
           />
@@ -153,8 +169,8 @@ function Formulario({ accion, titulo }) {
             type="url"
             placeholder="Link de Amazon"
             id="amazon"
-            value={amazon}
-            onChange={(e) => setAmazon(e.target.value)}
+            value={linkReferencia}
+            onChange={(e) => setLinkReferencia(e.target.value)}
             className="block w-full p-2 text-gray-900 border border-sky-300 rounded-lg text-xs focus:ring-blue-500 focus:border-blue-500"
           />
           {libros.length === 0 ? (
@@ -166,8 +182,6 @@ function Formulario({ accion, titulo }) {
                 name="autor"
                 id="autor"
                 defaultValue="defaultAutor"
-                value={autor}
-                onChange={(e) => setAutor(e.target.value)}
                 className="block w-full p-2 text-gray-900 border border-sky-300 rounded-lg text-xs focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="defaultAutor" disabled hidden>
@@ -190,7 +204,7 @@ function Formulario({ accion, titulo }) {
             onChange={(e) => setRating(e.target.value)}
             className="block w-full p-2 text-gray-900 border border-sky-300 rounded-lg text-xs focus:ring-blue-500 focus:border-blue-500"
           />
-          {libros.length === 0 ? (
+          {temas.length === 0 ? (
             "Cargando ..."
           ) : (
             <span className="grid grid-col1">
@@ -211,7 +225,7 @@ function Formulario({ accion, titulo }) {
                   className="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
                   aria-labelledby="dropdownSearchButton"
                   id="temas"
-                  value={idTemas}
+                  value={temas}
                   onChange={(e) => setIdTemas(e.target.value)}
                 >
                   {temas.map((tema) => (

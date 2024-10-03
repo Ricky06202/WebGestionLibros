@@ -1,3 +1,4 @@
+import type { libro } from "@library/constants/ApiLibrosTypes";
 import axios from "axios";
 
 export async function getAuthors() {
@@ -105,28 +106,30 @@ export async function getBook(id: number): Promise<any> {
     });
 }
 
-export async function postBook(librosData: any): Promise<any>{
-  return axios.post("http://127.0.0.1:8000/Libros/", {
-    titulo: librosData.idTitulo,
-    subtitulo: librosData.subtitulo,
-    descripcion: librosData.descripcion,
-    link_portada: librosData.portada,
-    año_publicacion: librosData.añoPublicacion,
-    editorial: librosData.editorial,
-    paginas: librosData.paginas,
-    esta_disponible: librosData.disponibilidad,
-    precio: librosData.precio,
-    link_referencia: librosData.amazon,
-    rating: librosData.rating,
-    autor: librosData.autor,
-    nombreTema: librosData.idTemas,
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-    if (error.response.status === 500) {
-      console.error('Error interno del servidor');}
-  });
+export async function postBook(librosData: any): Promise<any> {
+  return axios
+    .post("http://127.0.0.1:8000/Libros/", {
+      titulo: librosData.titulo,
+      subtitulo: librosData.subtitulo,
+      descripcion: librosData.descripcion,
+      link_portada: librosData.portada,
+      año_publicacion: librosData.añoPublicacion,
+      editorial: librosData.editorial,
+      paginas: librosData.paginas,
+      esta_disponible: librosData.disponibilidad,
+      precio: librosData.precio,
+      link_referencia: librosData.linkReferencia,
+      rating: librosData.rating,
+      autor: librosData.autor,
+      nombreTema: librosData.temas,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+      if (error.response.status === 500) {
+        console.error("Error interno del servidor");
+      }
+    });
 }
