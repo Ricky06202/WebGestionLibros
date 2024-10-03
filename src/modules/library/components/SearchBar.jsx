@@ -42,7 +42,7 @@ function ListaLibros() {
 
   return (
     <div className="items-center grid m-9">
-      <div className="grid grid-flow-col">
+      <div className="flex justify-evenly">
         <input
           value={buscarLibros}
           onChange={(e) => setbuscarLibros(e.target.value)}
@@ -50,23 +50,25 @@ function ListaLibros() {
           placeholder="Buscar libro"
           className="form-control md:w-1/2 justify-self-center"
         />
-        <select
-          name="tamaño"
-          id="id_tamaño"
-          className="md:w-1/2 justify-self-center ml-10"
-          onChange={cambiarTamano}
-        >
-          <option value={1}>Grande</option>
-          <option value={2}>Mediano</option>
-          <option value={3}>Pequeño</option>
-        </select>
-        <button
-          type="button"
-          onClick={handleClick}
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm justify-self-end mr-20 md:w-1/2 w-36 ml-10"
-        >
-          Añadir Libro
-        </button>
+        <div className="grid grid-cols-2 gap-4">
+          <select
+            name="tamaño"
+            id="id_tamaño"
+            className=""
+            onChange={cambiarTamano}
+          >
+            <option value={1}>Grande</option>
+            <option value={2}>Mediano</option>
+            <option value={3}>Pequeño</option>
+          </select>
+          <button
+            type="button"
+            onClick={handleClick}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm "
+          >
+            Añadir Libro
+          </button>
+        </div>
       </div>
     </div>
   );

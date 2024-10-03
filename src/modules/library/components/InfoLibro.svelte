@@ -13,7 +13,13 @@
     libro = $bookList.filter((libro) => libro.id == id)[0];
   });
   authorList.subscribe((value) => {
-    autor = $authorList.filter((autor) => autor.id == id)[0];
+    autor = $authorList.filter((autor) => autor.id == libro.autor)[0];
+    if (autor === undefined) {
+      autor = {
+        id: 0,
+        nombre: "",
+      };
+    }
   });
   topicList.subscribe((value) => {
     temas = [...$topicList];

@@ -43,21 +43,21 @@
       {#if $tamano == 1}
         <LibroGrande
           {libro}
-          autor={$autores.filter((autor) => autor.id == libro.autor[0])[0]
-            .nombre}
+          autor={$autores.filter(autor => autor.id == libro.autor[0]).length > 0 ? $autores.filter((autor) => autor.id == libro.autor[0])[0]
+            .nombre : ""}
         />
       {:else if $tamano == 2}
         <LibroMediano
           {libro}
-          autor={$autores.filter((autor) => autor.id == libro.autor[0])[0]
-            .nombre}
+          autor={$autores.filter(autor => autor.id == libro.autor[0]).length > 0 ? $autores.filter((autor) => autor.id == libro.autor[0])[0]
+            .nombre : ""}
           temas={[...$temas]}
         />
       {:else}
         <LibroPequeo
           {libro}
-          autor={$autores.filter((autor) => autor.id == libro.autor[0])[0]
-            .nombre}
+          autor={$autores.filter(autor => autor.id == libro.autor[0]).length > 0 ? $autores.filter((autor) => autor.id == libro.autor[0])[0]
+            .nombre : ""}
         />
       {/if}
     {/each}

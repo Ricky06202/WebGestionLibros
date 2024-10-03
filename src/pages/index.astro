@@ -1,10 +1,10 @@
 ---
-import ListaLibros from "@library/components/ListaLibros.svelte";
-import SearchBar from "@library/components/SearchBar.jsx";
-import LibraryLayout from "@library/layout/LibraryLayout.astro";
+import ListaLibros from '@library/components/ListaLibros.svelte'
+import SearchBar from '@library/components/SearchBar.jsx'
+import LibraryLayout from '@library/layout/LibraryLayout.astro'
 ---
 
-<LibraryLayout title="Library">
-  <SearchBar client:load />
-  <ListaLibros client:load />
+<LibraryLayout title='Library'>
+	<SearchBar client:load />
+	<ListaLibros client:load />
 </LibraryLayout>

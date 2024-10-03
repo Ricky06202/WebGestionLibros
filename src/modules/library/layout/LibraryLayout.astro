@@ -1,26 +1,36 @@
 ---
-import Footer from "./components/Footer.astro";
-import Header from "./components/Header.astro";
-import Logo from "/public/favicon.svg";
+import Footer from './components/Footer.astro'
+import Header from './components/Header.astro'
+import Logo from '/public/favicon.svg'
 
 interface Props {
-  title: string;
+	title: string
 }
-const { title } = Astro.props;
+const { title } = Astro.props
 ---
 
 <!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href={Logo.src} />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body class="grid">
-    <Header />
-    <slot />
-    <Footer />
-  </body>
+<html lang='es'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta
+			name='viewport'
+			content='width=device-width, initial-scale=1.0'
+		/>
+		<link
+			rel='icon'
+			type='image/svg+xml'
+			href={Logo.src}
+		/>
+		<meta
+			name='generator'
+			content={Astro.generator}
+		/>
+		<title>{title}</title>
+	</head>
+	<body class='grid w-full mx-auto sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px]'>
+		<Header />
+		<slot />
+		<Footer />
+	</body>
 </html>

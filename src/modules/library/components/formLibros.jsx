@@ -54,8 +54,8 @@ function Formulario({ accion, titulo }) {
       precio,
       linkReferencia,
       rating,
-      autor: [1],
-      temas: [1],
+      autor: [autor],
+      temas: [1, 2, 3],
     };
     postBook(datos);
   };
@@ -164,13 +164,17 @@ function Formulario({ accion, titulo }) {
                 name="autor"
                 id="autor"
                 defaultValue="defaultAutor"
+                value={autor}
+                onChange={(e) => setAutor(e.target.value)}
                 className="block w-full p-2 text-gray-900 border border-sky-300 rounded-lg text-xs focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="defaultAutor" disabled hidden>
                   autores
                 </option>
                 {autores.map((autor) => (
-                  <option key={autor.id}>{autor.nombre}</option>
+                  <option key={autor.id} value={autor.id}>
+                    {autor.nombre}
+                  </option>
                 ))}
               </select>
             </span>
