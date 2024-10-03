@@ -26,7 +26,7 @@
   });
 
   function handleEditar() {
-    window.location.href = "/editarLibro";
+    window.location.href = `/editarLibro/${id}/`;
   }
 
   function handleEliminar() {

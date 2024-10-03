@@ -106,8 +106,8 @@ export async function getBook(id: number): Promise<any> {
     });
 }
 
-export async function postBook(librosData: any): Promise<any> {
-  return axios
+export async function postBook(librosData: any) {
+  axios
     .post("http://127.0.0.1:8000/Libros/", {
       titulo: librosData.titulo,
       subtitulo: librosData.subtitulo,
@@ -138,4 +138,29 @@ export async function deleteBook(id: number) {
   axios.delete(`http://127.0.0.1:8000/Libros/${id}/`).catch((error) => {
     console.log(error);
   });
+}
+
+export async function updateBook(id: number, data: any) {
+  axios
+    .put(`http://127.0.0.1:8000/Libros/${id}/`, {
+      titulo: data.titulo,
+      subtitulo: data.subtitulo,
+      descripcion: data.descripcion,
+      link_portada: data.portada,
+      año_publicacion: data.añoPublicacion,
+      editorial: data.editorial,
+      paginas: data.paginas,
+      esta_disponible: data.disponibilidad,
+      precio: data.precio,
+      link_referencia: data.linkReferencia,
+      rating: data.rating,
+      autor: data.autor,
+      nombreTema: data.temas,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }

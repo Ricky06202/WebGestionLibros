@@ -4,14 +4,14 @@ import {
   getAuthors,
   getTopics,
   postBook,
+  updateBook,
+  getBook,
 } from "@library/services/apiLibros";
 import { getElementsPositionInDocument } from "astro/runtime/client/dev-toolbar/apps/utils/highlight.js";
-function Formulario({ accion, titulo }) {
+function Formulario({ accion, titulo, id = "" }) {
   const [libros, setLibros] = useState([]);
   const [autores, setAutores] = useState([]);
   const [temas, setTemas] = useState([]);
-
-  const [temaPost, setTemaPost] = useState([]);
 
   const [idTitulo, setTitulo] = useState("");
   const [subtitulo, setSubtitulo] = useState("");
@@ -25,9 +25,6 @@ function Formulario({ accion, titulo }) {
   const [linkReferencia, setLinkReferencia] = useState("");
   const [rating, setRating] = useState("");
   const [autor, setAutor] = useState("");
-  const [idTemas, setIdTemas] = useState("");
-
-  const URL = "http://127.0.0.1:8000/Libros/";
 
   useEffect(() => {
     getBooks().then((librosApi) => {
@@ -40,6 +37,24 @@ function Formulario({ accion, titulo }) {
       setTemas(temasApi);
     });
   }, []);
+
+  useEffect(() => {
+    if (accion !== "Editar") return;
+    if (libros.length === 0 || libros === undefined) return;
+    const libro = libros.filter((libro) => libro.id == id)[0];
+    setTitulo(libro.titulo);
+    setSubtitulo(libro.subtitulo);
+    setDescripcion(libro.descripcion);
+    setPortada(libro.portada);
+    setAñoPublicacion(libro.añoPublicacion);
+    setEditorial(libro.editorial);
+    setPaginas(libro.paginas);
+    setDisponibilidad(libro.disponibilidad);
+    setPrecio(libro.precio);
+    setLinkReferencia(libro.linkReferencia);
+    setRating(libro.rating);
+    setAutor(libro.autor);
+  }, [libros]);
 
   const handleButtonClick = () => {
     let datos = {
@@ -57,12 +72,17 @@ function Formulario({ accion, titulo }) {
       autor: [autor],
       temas: [1, 2, 3],
     };
-    postBook(datos);
+
+    if (accion === "Editar") {
+      updateBook(parseInt(id), datos);
+    } else {
+      postBook(datos);
+    }
     window.location.href = "/";
   };
 
   return (
-    <>
+    <div>
       <div className="flex flex-col items-center">
         <h3 className="flex flex-col m-4 text-lg">{accion + " " + titulo}</h3>
       </div>
@@ -249,7 +269,7 @@ function Formulario({ accion, titulo }) {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

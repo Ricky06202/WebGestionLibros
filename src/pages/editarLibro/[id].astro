@@ -4,12 +4,15 @@ import LibraryLayout from '@library/layout/LibraryLayout.astro'
 
 const accion = 'Editar'
 const titulo = 'Libro'
+
+const { id } = Astro.params
 ---
 
 <LibraryLayout title='Gestor de Libros'>
 	<Formulario
 		accion={accion}
 		titulo={titulo}
+		id={id}
 		client:load
 	/>
 </LibraryLayout>
