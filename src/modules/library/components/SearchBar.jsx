@@ -5,7 +5,7 @@ import {
   bookListSize,
   bookListFiltered,
 } from "@library/store/bookStore";
-import { getBooks } from "@library/services/apiLibros";
+import { getBooks } from "@library/services/apiLibrosLocal";
 
 function ListaLibros() {
   const handleClick = () => {

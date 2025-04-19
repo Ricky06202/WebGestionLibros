@@ -3,7 +3,7 @@
   import Icon from "@iconify/svelte";
   import { bookList, authorList, topicList } from "@library/store/bookStore";
   import { onMount } from "svelte";
-  import { deleteBook, getAuthors, getBooks, getTopics } from "@library/services/apiLibros";
+  import { deleteBook, getAuthors, getBooks, getTopics } from "@library/services/apiLibrosLocal";
 
   export let id: number;
   let libro: libro;
@@ -13,7 +13,7 @@
     libro = $bookList.filter((libro) => libro.id == id)[0];
   });
   authorList.subscribe((value) => {
-    autor = $authorList.filter((autor) => autor.id == libro.autor)[0];
+    autor = $authorList.filter((autor) => autor.id == libro.autor[0])[0];
     if (autor === undefined) {
       autor = {
         id: 0,

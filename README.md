@@ -10,6 +10,17 @@ npm i
 npm run dev
 ```
 
+#### Bun
+
+```bash
+bun i
+```
+
+```bash
+bun run dev
+```
+
+
 ## Iconos
 
 ### Pagina de Iconos

@@ -11,7 +11,7 @@
   } from "@library/store/bookStore";
   import { onMount } from "svelte";
   import type { autor, tema } from "@library/constants/ApiLibrosTypes";
-  import { getAuthors, getTopics } from "@library/services/apiLibros.ts";
+  import { getAuthors, getTopics } from "@library/services/apiLibrosLocal.ts";
 
   let libros = bookList;
   let librosFiltrados = bookListFiltered;

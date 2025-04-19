@@ -5,7 +5,7 @@ import {
   getTopics,
   postBook,
   updateBook,
-} from "@library/services/apiLibros";
+} from "@library/services/apiLibrosLocal";
 import { authorList, bookList, topicList } from "@library/store/bookStore";
 import { useStore } from "@nanostores/react";
 function Formulario({ accion, titulo, id = "" }) {
